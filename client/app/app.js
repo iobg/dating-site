@@ -11,5 +11,5 @@ app.config(['$routeProvider', function($routeProvider) {
 }])
 
 app.controller('WelcomeCtrl', ['$scope', function($scope) {
-  $scope.title = 'Welcome to Clown Date'
+  $scope.title = 'Down to Clown'
 }])
