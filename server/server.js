@@ -3,8 +3,9 @@
 //Thrid party modules
 const express = require("express");
 const { json } = require("body-parser");
-const session = require('express-session')
-const passport = require('passport')
+const session = require('express-session');
+const passport = require('passport');
+const RedisStore = require("connect-redis")(session);
 
 //clown files
 const routes = require("./routes/");
@@ -20,6 +21,9 @@ app.use(express.static("client"));
 app.use(json());
 
 app.use(session({
+  store: new RedisStore({
+    url: process.env.REDIS_URL || "redis://localhost:6379"
+  }),
   secret: process.env.SESSION_SECRET || 'secretKey',
   resave:false,
   saveUninitialized:false
