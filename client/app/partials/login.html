@@ -1,8 +1,27 @@
+<div ng-include="'/app/partials/nav.html'"></div>
 <div class='row'>
-  <div ng-include="'/app/partials/nav.html'"></div>
   <div class='col-xs-12'>
-    <h1>Login</h1>
-    <p>{{ title }}</p>
+    <div class='reg-form container'>
+      <div class='col-xs-12'>
+        <form class='col-xs-8 col-xs-offset-4'>
+          <div class='form-group'>
+            <label class='control-label' for="email"> Email
+              <input class='form-control' type="email" name="email" placeholder="super@secret.com" required ng-model='email'/>
+            </label>
+          </div>
+          <div class='form-group'>
+            <label class='control-label' for="password"> Password
+              <input class='form-control' type="password" name="password" placeholder="************" required ng-model='password'/>
+            </label>
+          </div>
+          <div class='button-group'>
+            <button class="btn btn-success"> Cancel</button>
+            <button class="btn btn-info" ng-click='login()'> Login</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
   </div>
 
 </div>

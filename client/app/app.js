@@ -33,12 +33,22 @@ app.controller('WelcomeCtrl', ['$scope', function($scope) {
 
 app.controller('HomeCtrl', ['$scope', function($scope) {
   $scope.title = 'Home page contrller'
-  $scope.user = false
+  $scope.user = true
+  $scope.logout = () => console.log('hello')
 }])
 
-app.controller('LoginCtrl', ['$scope', function($scope) {
-  $scope.title = 'Login page contrller'
-  $scope.user = true
+app.controller('LoginCtrl', ['$scope', '$http', '$location', function($scope, $http, $location) {
+  $scope.login = () => {
+    let userLoginObj = {
+      email: $scope.email,
+      password: $scope.password
+    }
+    $http.post('/api/login', userLoginObj)
+      .then(data => {
+        $location.url('/home')
+      })
+      .catch(console.error)
+  }
 }])
 
 app.controller('ProfileCtrl', ['$scope', function($scope) {
@@ -46,16 +56,18 @@ app.controller('ProfileCtrl', ['$scope', function($scope) {
   $scope.user = true
 }])
 
-app.controller('RegCtrl', ['$scope', '$http', function($scope, $http) {
+app.controller('RegCtrl', ['$scope', '$http', '$location', function($scope, $http, $location) {
   $scope.regNewUser = () => {
     let newUserObject = {
       email: $scope.email,
       password: $scope.password,
       confirmation: $scope.confirmation
     }
-    console.log('user object', newUserObject)
-    $http.post('/api/register', {newUserObject})
-      .then((data) => {console.log('then block data:', data)})
+
+    $http.post('/api/register', newUserObject)
+      .then(data => {
+        $location.url('/login')
+      })
       .catch(console.error)
   }
 }])
