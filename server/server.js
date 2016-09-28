@@ -23,7 +23,7 @@ app.use(routes);
 connect()
   .then(() => {
     app.listen(PORT, () =>
-      console.log(`Listening on port ${PORT}`);
+      console.log(`Listening on port ${PORT}`)
     )
   })
   .catch(console.error);
