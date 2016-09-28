@@ -16,13 +16,10 @@ passport.use(new LocalStrategy(
       }
       else{
       	return done(null, false,{message: "Incorrect password"});
-      }
-      
+      } 
     });
   }
 ));
-
-
 
 module.exports.create=(req,res,err)=>{
 

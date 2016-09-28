@@ -2,10 +2,10 @@
 
 const { Router } = require('express');
 
-const login = require('../controllers/login')
+const login = require('../controllers/register')
 
 const router = Router()
 
-router.post('/api/login', login.create)
+router.post('/api/register', register.create)
 
 module.exports=router;
