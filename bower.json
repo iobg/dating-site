@@ -1,0 +1,22 @@
+{
+  "name": "dating-site",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Thomas Swann <tkswann@mac.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/iobg/dating-site",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-route": "^1.5.8",
+    "bootstrap": "^3.3.7"
+  }
+}
