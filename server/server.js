@@ -3,6 +3,8 @@
 //Thrid party modules
 const express = require("express");
 const { json } = require("body-parser");
+const session = require('express-session')
+const passport = require('passport')
 
 //clown files
 const routes = require("./routes/");
@@ -16,6 +18,14 @@ const app = express();
 //middlewares
 app.use(express.static("client"));
 app.use(json());
+
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'secretKey',
+  resave:false,
+  saveUninitialized:false
+}))
+app.use(passport.initialize())
+app.use(passport.session())
 
 app.use(routes);
 
