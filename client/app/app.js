@@ -20,6 +20,10 @@ app.config(['$routeProvider', function($routeProvider) {
       controller: 'ProfileCtrl',
       templateUrl: '/app/partials/profile.html'
     })
+    .when('/register', {
+      controller: 'RegCtrl',
+      templateUrl: '/app/partials/register.html'
+    })
 }])
 
 app.controller('WelcomeCtrl', ['$scope', function($scope) {
@@ -39,5 +43,10 @@ app.controller('LoginCtrl', ['$scope', function($scope) {
 
 app.controller('ProfileCtrl', ['$scope', function($scope) {
   $scope.title = 'Profile page contrller'
+  $scope.user = true
+}])
+
+app.controller('RegCtrl', ['$scope', function($scope) {
+  $scope.title = 'Register page contrller'
   $scope.user = true
 }])
