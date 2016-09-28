@@ -46,7 +46,15 @@ app.controller('ProfileCtrl', ['$scope', function($scope) {
   $scope.user = true
 }])
 
-app.controller('RegCtrl', ['$scope', function($scope) {
-  $scope.title = 'Register page contrller'
-  $scope.user = true
+app.controller('RegCtrl', ['$scope', '$http', function($scope, $http) {
+  $scope.regNewUser = () => {
+    let newUserObject = {
+      email: $scope.email,
+      password: $scope.password
+    }
+
+    $http.post('api/register', newUserObject)
+      .then((data) => {console.log('then block data:', data)})
+      .catch(console.error)
+  }
 }])
