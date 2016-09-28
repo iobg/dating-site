@@ -4,6 +4,7 @@
 const express = require("express");
 const { json } = require("body-parser");
 const session = require('express-session')
+const passport = require('passport')
 
 //clown files
 const routes = require("./routes/");
@@ -23,6 +24,8 @@ app.use(session({
   resave:false,
   saveUninitialized:false
 }))
+app.use(passport.initialize())
+app.use(passport.session())
 
 app.use(routes);
 
