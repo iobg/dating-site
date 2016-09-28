@@ -2,8 +2,8 @@
 
 const Profile = require("../models/profile.js");
 
-
-module.exports.show = (req, res) => {
+//show gets a single profile by _id
+module.exports.show = (req, res, err) => {
   Profile
     .findOne(req.body.id)
     .then(prof => {
@@ -12,7 +12,8 @@ module.exports.show = (req, res) => {
     .catch(err);
 };
 
-module.exports.index = (req, res) => {
+//index finds all profiles on the server
+module.exports.index = (req, res, err) => {
   Profile
     .find({})
     .then(profs => {
@@ -21,6 +22,7 @@ module.exports.index = (req, res) => {
     .catch(err);
 };
 
+//create makes a new profile
 module.exports.create = (req, res, err) => {
   Profile
     .create(req.body)
