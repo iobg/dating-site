@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt')
 
 module.exports.create=(req,res,err)=>{
 	console.log(req.body)
-	if(req.body.password===req.body.confirmaton){
+	if(req.body.password===req.body.confirmation){
 	User.findOne({email:req.body.email})
 	.then(user =>{
 		if(user){
@@ -17,6 +17,7 @@ module.exports.create=(req,res,err)=>{
 				resolve(hash);
 		})
 	}).then(hash=>{
+			res.send({msg:"User successfully created"})
 			return User.create({email:req.body.email,password:hash})
 	})
 	})
