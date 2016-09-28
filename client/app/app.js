@@ -50,10 +50,11 @@ app.controller('RegCtrl', ['$scope', '$http', function($scope, $http) {
   $scope.regNewUser = () => {
     let newUserObject = {
       email: $scope.email,
-      password: $scope.password
+      password: $scope.password,
+      confirmation: $scope.confirmation
     }
-
-    $http.post('api/register', newUserObject)
+    console.log('user object', newUserObject)
+    $http.post('/api/register', {newUserObject})
       .then((data) => {console.log('then block data:', data)})
       .catch(console.error)
   }
