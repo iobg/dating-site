@@ -2,10 +2,13 @@
 
 //Thrid party modules
 const express = require("express");
-const { json } = require("body-parser");
+const {json, urlencoded} = require("body-parser");
+
 const session = require('express-session');
 const passport = require('passport');
+
 const RedisStore = require("connect-redis")(session);
+
 
 //clown files
 const routes = require("./routes/");
@@ -18,7 +21,11 @@ const app = express();
 
 //middlewares
 app.use(express.static("client"));
-app.use(json());
+
+app.use(json({limit:'50mb'}))
+app.use(urlencoded({limit: '50mb', extended:true}));
+
+
 
 app.use(session({
   store: new RedisStore({
@@ -30,6 +37,7 @@ app.use(session({
 }))
 app.use(passport.initialize())
 app.use(passport.session())
+
 
 app.use(routes);
 
