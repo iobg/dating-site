@@ -28,6 +28,10 @@ app.config(['$routeProvider', function($routeProvider) {
       controller: 'LogoutCtrl',
       templateUrl: '/app/partials/logout.html'
     })
+    .when('/profileView', {
+      controller: 'ProfileViewCtrl',
+      templateUrl: '/app/partials/profileView.html'
+    })
 }])
 
 app.controller('WelcomeCtrl', ['$scope', 'UserService', function($scope, UserService) {
@@ -43,6 +47,12 @@ app.controller('HomeCtrl', ['$scope', 'UserService', function($scope, UserServic
 }])
 
 app.controller('ProfileCtrl', ['$scope', 'UserService', function($scope, UserService) {
+  $scope.title = 'Profile page contrller'
+  $scope.userState = UserService.getUserState()
+  $scope.user = UserService.getUserObj()
+}])
+
+app.controller('ProfileViewCtrl', ['$scope', 'UserService', function($scope, UserService) {
   $scope.title = 'Profile page contrller'
   $scope.userState = UserService.getUserState()
   $scope.user = UserService.getUserObj()
