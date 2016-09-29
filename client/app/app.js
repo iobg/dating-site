@@ -30,53 +30,48 @@ app.config(['$routeProvider', function($routeProvider) {
     })
 }])
 
-app.controller('WelcomeCtrl', ['$scope', function($scope) {
+app.controller('WelcomeCtrl', ['$scope', 'UserService', function($scope, UserService) {
   $scope.title = 'Are you down to Clown?'
-  $scope.user = false
+  $scope.userState = UserService.getUserState()
+  $scope.user = UserService.getUserObj()
 }])
 
-app.controller('HomeCtrl', ['$scope', function($scope) {
+app.controller('HomeCtrl', ['$scope', 'UserService', function($scope, UserService) {
   $scope.title = 'Home page contrller'
-  $scope.user = true
-  $scope.logout = () => console.log('hello')
+  $scope.userState = UserService.getUserState()
+  $scope.user = UserService.getUserObj()
 }])
 
-app.controller('ProfileCtrl', ['$scope', function($scope) {
+app.controller('ProfileCtrl', ['$scope', 'UserService', function($scope, UserService) {
   $scope.title = 'Profile page contrller'
-  $scope.user = true
+  $scope.userState = UserService.getUserState()
+  $scope.user = UserService.getUserObj()
+  console.log(UserService.getUserObj().config)
 }])
 
-app.controller('LoginCtrl', ['$scope', '$http', '$location', function($scope, $http, $location) {
+app.controller('LoginCtrl', ['$scope', 'UserService', function($scope, UserService) {
   $scope.login = () => {
     let userLoginObj = {
       email: $scope.email,
       password: $scope.password
     }
-    $http.post('/api/login', userLoginObj)
-      .then(data => $location.url('/home'))
-      .catch(console.error)
+    UserService.login(userLoginObj)
   }
 }])
 
-app.controller('LogoutCtrl', ['$scope', '$http', '$location', function($scope, $http, $location) {
+app.controller('LogoutCtrl', ['$scope', 'UserService', function($scope, UserService) {
   $scope.logout = () => {
-    $http
-    .post('/api/logout')
-    .then(() => $location.url('/'))
-    .catch(console.error)
+    UserService.logout()
   }
 }])
 
-app.controller('RegCtrl', ['$scope', '$http', '$location', function($scope, $http, $location) {
+app.controller('RegCtrl', ['$scope', 'UserService', function($scope, UserService) {
   $scope.regNewUser = () => {
     let newUserObject = {
       email: $scope.email,
       password: $scope.password,
       confirmation: $scope.confirmation
     }
-
-    $http.post('/api/register', newUserObject)
-      .then(data => $location.url('/login'))
-      .catch(console.error)
+    UserService.register(newUserObject)
   }
 }])
