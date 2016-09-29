@@ -29,8 +29,16 @@ app.factory('UserService', ['$http', '$location', function($http, $location) {
       .catch(console.error)
   }
 
+  const postProfile = (profile) => {
+    $http.post("/api/profiles", profile)
+      .then(() => {
+        $location.url("/profiles");
+      })
+      .catch(console.error);
+  }
+
   const getUserState = () => userState
   const getUserObj = () => userObj
 
-  return {getUserState, getUserObj, register, login, logout}
+  return {getUserState, getUserObj, postProfile, register, login, logout}
 }])
