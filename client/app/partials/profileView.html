@@ -1,4 +1,18 @@
 <div class='row'>
-<div ng-include="'/app/partials/nav.html'"></div>
+  <div ng-include="'/app/partials/nav.html'"></div>
+  <h1>Profile View</h1>
 </div>
-<h1>Profile View</h1>
+<div class='row'>
+  <div class="card col-xs-4" ng-repeat='profile in profiles'>
+    <div class="card-block">
+      <h4 class="card-title">Clown name: {{profile.clownName}}</h4>
+      <h6 class="card-subtitle text-muted">{{profile.name}}</h6>
+    </div>
+    <img ng-src={{profile.img}} alt="Card image">
+    <div class="card-block">
+      <p class="card-text">{{profile.bio}}</p>
+      <a href="#" class="card-link">Card link</a>
+      <a href="#" class="card-link">Another link</a>
+    </div>
+  </div>
+</div>

@@ -28,7 +28,7 @@ app.config(['$routeProvider', function($routeProvider) {
       controller: 'LogoutCtrl',
       templateUrl: '/app/partials/logout.html'
     })
-    .when('/profileView', {
+    .when('/profiles', {
       controller: 'ProfileViewCtrl',
       templateUrl: '/app/partials/profileView.html'
     })
@@ -65,10 +65,14 @@ app.controller('ProfileCtrl', ['$scope', 'UserService', function($scope, UserSer
   // console.log(UserService.getUserObj().config)
 }])
 
-app.controller('ProfileViewCtrl', ['$scope', 'UserService', function($scope, UserService) {
+app.controller('ProfileViewCtrl', ['$scope', 'UserService', '$http', function($scope, UserService, $http) {
   $scope.title = 'Profile page contrller'
   $scope.userState = UserService.getUserState()
   $scope.user = UserService.getUserObj()
+
+  $http.get('/api/allprofiles')
+  .then(({data}) => $scope.profiles = data)
+  .catch(console.error)
 }])
 
 app.controller('LoginCtrl', ['$scope', 'UserService', function($scope, UserService) {
