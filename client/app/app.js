@@ -24,6 +24,10 @@ app.config(['$routeProvider', function($routeProvider) {
       controller: 'RegCtrl',
       templateUrl: '/app/partials/register.html'
     })
+    .when('/logout', {
+      controller: 'LogoutCtrl',
+      templateUrl: '/app/partials/logout.html'
+    })
 }])
 
 app.controller('WelcomeCtrl', ['$scope', function($scope) {
@@ -37,6 +41,11 @@ app.controller('HomeCtrl', ['$scope', function($scope) {
   $scope.logout = () => console.log('hello')
 }])
 
+app.controller('ProfileCtrl', ['$scope', function($scope) {
+  $scope.title = 'Profile page contrller'
+  $scope.user = true
+}])
+
 app.controller('LoginCtrl', ['$scope', '$http', '$location', function($scope, $http, $location) {
   $scope.login = () => {
     let userLoginObj = {
@@ -44,16 +53,18 @@ app.controller('LoginCtrl', ['$scope', '$http', '$location', function($scope, $h
       password: $scope.password
     }
     $http.post('/api/login', userLoginObj)
-      .then(data => {
-        $location.url('/home')
-      })
+      .then(data => $location.url('/home'))
       .catch(console.error)
   }
 }])
 
-app.controller('ProfileCtrl', ['$scope', function($scope) {
-  $scope.title = 'Profile page contrller'
-  $scope.user = true
+app.controller('LogoutCtrl', ['$scope', '$http', '$location', function($scope, $http, $location) {
+  $scope.logout = () => {
+    $http
+    .post('/api/logout')
+    .then(() => $location.url('/'))
+    .catch(console.error)
+  }
 }])
 
 app.controller('RegCtrl', ['$scope', '$http', '$location', function($scope, $http, $location) {
@@ -65,9 +76,7 @@ app.controller('RegCtrl', ['$scope', '$http', '$location', function($scope, $htt
     }
 
     $http.post('/api/register', newUserObject)
-      .then(data => {
-        $location.url('/login')
-      })
+      .then(data => $location.url('/login'))
       .catch(console.error)
   }
 }])
