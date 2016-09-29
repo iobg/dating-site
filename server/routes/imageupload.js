@@ -11,9 +11,10 @@ const uploadImage = require('../controllers/imageupload')
 imgur.setClientId('9317d730bdae0e9')
 
 router.post('/api/imageupload', upload.single('avatar'), (req,res,next)=>{
-	let imagePath = `../images/${req.file.filename}`
-	fs.renameSync(imagePath,`${imagePath}.${req.file.mimetype.slice(6)}`) 
-	imgur.uploadFile(`../images/${req.file.filename}.${req.file.mimetype.slice(6)}`)
+
+	let imagePath = `./images/${req.file.filename}`
+	fs.renameSync(imagePath,`${imagePath}.${req.file.mimetype.slice(6)}`)
+	imgur.uploadFile(`${imagePath}.${req.file.mimetype.slice(6)}`)
 	.then(json=>{
 		console.log(json.data.link)
 	})
