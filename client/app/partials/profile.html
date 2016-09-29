@@ -1,8 +1,42 @@
 <div class='row'>
   <div ng-include="'/app/partials/nav.html'"></div>
   <div class='col-xs-12'>
-    <h1>Profile</h1>
-    <h3 class='text-center'>{{ title }}</h3>
+    <h1>Profile Creation</h1>
+    <!-- <h3 class='text-center'>{{ title }}</h3> -->
+    <form class='col-xs-8 col-xs-offset-4'>
+      <div class='form-group'>
+        <label class='control-label' for="name"> Name
+          <input class='form-control' type="text" name="name" placeholder="John Doe" required ng-model='realName'/>
+        </label>
+      </div>
+      <div class='form-group'>
+        <label class='control-label' for="clownName"> Clown Name
+          <input class='form-control' type="text" name="clownName" placeholder="Pennywise" required ng-model='clownName'/>
+        </label>
+      </div>
+      <div class='form-group'>
+        <label class='control-label' for="bio"> Biography
+          <input class='form-control' type="text" name="bio" placeholder="When I was a little boy..." required ng-model='bio'/>
+        </label>
+      </div>
+      <div class='form-group'>
+        <label class='control-label' for="clownStory"> Clown Story
+          <input class='form-control' type="text" name="clownStory" placeholder="I realized I was a clown when..." required ng-model='clownStory'/>
+        </label>
+      </div>
+      <div class='form-group'>
+        <label class='control-label' for="skills"> Special Skills
+          <input class='form-control' type="text" name="skills" placeholder="Balloons, Noses, Big Shoes" required ng-model='skills'/>
+        </label>
+      </div>
+      <div class='form-group'>
+        <label class='control-label' for="favorites"> Favorite Clown Things
+          <input class='form-control' type="text" name="favorites" placeholder="Noses, Forests, Kids" required ng-model='favorites'/>
+        </label>
+      </div>
+      <div class='button-group'>
+        <button type="btn" name="submit" ng-click="postUserProf()">Create Profile</button>
+      <div>
+    </form>
   </div>
-
 </div>

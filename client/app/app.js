@@ -46,7 +46,19 @@ app.controller('ProfileCtrl', ['$scope', 'UserService', function($scope, UserSer
   $scope.title = 'Profile page contrller'
   $scope.userState = UserService.getUserState()
   $scope.user = UserService.getUserObj()
-  console.log(UserService.getUserObj().config)
+  $scope.postUserProf = () => {
+    let profile = {
+      name: $scope.realName,
+      clownName: $scope.clownName,
+      bio: $scope.bio,
+      clownStory: $scope.clownStory,
+      skills: $scope.skills,
+      favorites: $scope.favorites
+    }
+    UserService.postProfile(profile);
+  }
+  // console.log(profile);
+  // console.log(UserService.getUserObj().config)
 }])
 
 app.controller('LoginCtrl', ['$scope', 'UserService', function($scope, UserService) {
