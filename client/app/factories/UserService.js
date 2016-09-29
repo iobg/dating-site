@@ -1,8 +1,7 @@
 'use strict'
-
 app.factory('UserService', ['$http', '$location', function($http, $location) {
   let userState = null
-   ,    userObj = null
+  let   userObj = null
 
   const register = (newUserObject) => {
     $http.post('/api/register', newUserObject)
@@ -10,12 +9,11 @@ app.factory('UserService', ['$http', '$location', function($http, $location) {
       .catch(console.error)
   }
 
-  const login = (userObj) => {
-    $http.post('/api/login', userObj)
-      .then(data => {
-        console.log('data:', data)
+  const login = (loginUserObj) => {
+    $http.post('/api/login', loginUserObj)
+      .then(({config: {data:{email}}}) => {
+        userObj = email
         userState = true
-        userObj = data
         $location.url('/home')
       })
       .catch(console.error)
@@ -25,18 +23,14 @@ app.factory('UserService', ['$http', '$location', function($http, $location) {
     $http.post('/api/logout')
       .then(data => {
         userState = false
-        userObj = data
+        userObj = null
         $location.url('/')
       })
       .catch(console.error)
   }
 
-  const getUserState = () => {
-    return userState
-  }
-  const getUserObj = () => {
-    return userObj
-  }
+  const getUserState = () => userState
+  const getUserObj = () => userObj
 
   return {getUserState, getUserObj, register, login, logout}
 }])
