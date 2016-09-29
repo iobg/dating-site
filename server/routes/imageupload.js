@@ -7,9 +7,6 @@ const upload=multer({dest:'images/'})
 
 const uploadImage = require('../controllers/imageupload')
 
-router.post('/api/imageupload', upload.single('avatar'), (req,res,next)=>{
-	console.log("hello")
-	console.log(req.file)
-})
+router.post('/api/imageupload', upload.single('avatar'), uploadImage.create)
 
 module.exports=router;
