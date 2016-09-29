@@ -16,9 +16,10 @@ router.post('/api/imageupload', upload.single('avatar'), (req,res,next)=>{
 	fs.renameSync(imagePath,`${imagePath}.${req.file.mimetype.slice(6)}`)
 	imgur.uploadFile(`${imagePath}.${req.file.mimetype.slice(6)}`)
 	.then(json=>{
-		console.log(json.data.link)
+		next(json.data.link)
 	})
 	.catch(console.error)
+
 })
 
 module.exports=router;
