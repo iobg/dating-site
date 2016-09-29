@@ -10,9 +10,10 @@
       <a class="navbar-brand" href="#/">Clown Date</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#/home">Home</a></li>
-      <li><a href="#/profile">Profile</a></li>
+      <li ng-show='userState'><a ng-href="#/home">Home</a></li>
+      <li ng-show='userState'><a ng-href="#/profile">New Profile</a></li>
+      <li ng-show='userState'><a ng-href="#/profileView">View Profiles</a></li>
     </ul>
-    <p class="navbar-text navbar-right" ng-show='user'>Signed in as <a class="navbar-link" ng-click='logout()'>Mark Otto</a></p>
+    <p class="navbar-text navbar-right" ng-show='userState'>Signed in as <a class="navbar-link" ng-href='#/logout'>{{ user }}</a></p>
   </div>
 </nav>
