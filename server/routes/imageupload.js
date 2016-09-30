@@ -7,7 +7,6 @@ const upload=multer({dest:'images/'})
 const imgur = require('imgur')
 const fs = require('fs')
 
-const uploadImage = require('../controllers/imageupload')
 imgur.setClientId('9317d730bdae0e9')
 
 router.post('/api/imageupload', upload.single('avatar'), (req,res,next)=>{
